@@ -1,11 +1,15 @@
 
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, X, LogIn, LogOut, UserPlus } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +33,41 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+      closeMenu();
+    } catch (error) {
+      console.error("Failed to log out", error);
+    }
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
+    closeMenu();
+  };
+
+  const handleSignupClick = () => {
+    navigate("/signup");
+    closeMenu();
+  };
+
+  const handleDashboardClick = () => {
+    if (currentUser) {
+      if (currentUser.role === "admin") {
+        navigate("/admin-dashboard");
+      } else if (currentUser.role === "supplier") {
+        navigate("/supplier-dashboard");
+      } else if (currentUser.role === "investor") {
+        navigate("/investor-dashboard");
+      } else {
+        navigate("/business-dashboard");
+      }
+    }
+    closeMenu();
+  };
+
   const navbarClasses = `fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 ${
     isScrolled 
       ? "bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md shadow-md" 
@@ -51,12 +90,40 @@ const Navbar = () => {
             <a href="#technology" className="text-neutral-700 dark:text-neutral-200 hover:text-guardian-600 dark:hover:text-guardian-400 transition">Technology</a>
           </div>
           <div className="flex items-center space-x-3">
-            <button className="px-4 py-2 text-neutral-700 dark:text-neutral-200 hover:text-guardian-600 dark:hover:text-guardian-400 transition">
-              Login
-            </button>
-            <button className="px-4 py-2 bg-guardian-600 hover:bg-guardian-700 text-white rounded-md transition shadow-sm hover:shadow">
-              Get Started
-            </button>
+            {currentUser ? (
+              <>
+                <Button 
+                  onClick={handleDashboardClick}
+                  className="px-4 py-2 text-neutral-700 dark:text-neutral-200 hover:text-guardian-600 dark:hover:text-guardian-400 transition"
+                >
+                  Dashboard
+                </Button>
+                <Button 
+                  onClick={handleLogout}
+                  className="px-4 py-2 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 hover:border-guardian-300 dark:hover:border-guardian-700 rounded-md transition flex items-center gap-2"
+                >
+                  <LogOut size={16} />
+                  <span>Logout</span>
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button 
+                  onClick={handleLoginClick}
+                  className="px-4 py-2 text-neutral-700 dark:text-neutral-200 hover:text-guardian-600 dark:hover:text-guardian-400 transition flex items-center gap-2"
+                >
+                  <LogIn size={16} />
+                  <span>Login</span>
+                </Button>
+                <Button 
+                  onClick={handleSignupClick}
+                  className="px-4 py-2 bg-guardian-600 hover:bg-guardian-700 text-white rounded-md transition shadow-sm hover:shadow flex items-center gap-2"
+                >
+                  <UserPlus size={16} />
+                  <span>Get Started</span>
+                </Button>
+              </>
+            )}
           </div>
         </div>
 
@@ -85,12 +152,40 @@ const Navbar = () => {
             <a href="#dashboard" className="text-neutral-700 dark:text-neutral-200 hover:text-guardian-600 dark:hover:text-guardian-400 transition" onClick={closeMenu}>Dashboard</a>
             <a href="#technology" className="text-neutral-700 dark:text-neutral-200 hover:text-guardian-600 dark:hover:text-guardian-400 transition" onClick={closeMenu}>Technology</a>
             <div className="pt-6 flex flex-col space-y-4 w-full">
-              <button className="px-4 py-3 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 rounded-md transition w-full">
-                Login
-              </button>
-              <button className="px-4 py-3 bg-guardian-600 hover:bg-guardian-700 text-white rounded-md transition shadow-sm hover:shadow w-full">
-                Get Started
-              </button>
+              {currentUser ? (
+                <>
+                  <Button 
+                    onClick={handleDashboardClick}
+                    className="px-4 py-3 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 rounded-md transition w-full flex items-center justify-center gap-2"
+                  >
+                    Dashboard
+                  </Button>
+                  <Button 
+                    onClick={handleLogout}
+                    className="px-4 py-3 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 rounded-md transition w-full flex items-center justify-center gap-2"
+                  >
+                    <LogOut size={18} />
+                    <span>Logout</span>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button 
+                    onClick={handleLoginClick}
+                    className="px-4 py-3 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 rounded-md transition w-full flex items-center justify-center gap-2"
+                  >
+                    <LogIn size={18} />
+                    <span>Login</span>
+                  </Button>
+                  <Button 
+                    onClick={handleSignupClick}
+                    className="px-4 py-3 bg-guardian-600 hover:bg-guardian-700 text-white rounded-md transition shadow-sm hover:shadow w-full flex items-center justify-center gap-2"
+                  >
+                    <UserPlus size={18} />
+                    <span>Get Started</span>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </div>
