@@ -117,9 +117,9 @@ const Technology = () => {
                 <span className="text-xs text-neutral-500 dark:text-neutral-400 ml-2">Code Example</span>
               </div>
               <div className="bg-neutral-900 text-neutral-200 p-6 font-mono text-sm overflow-auto h-full">
-                <span className="text-blue-400">const</span> <span className="text-green-400">verifySupplier</span> <span className="text-neutral-200">=</span> <span className="text-orange-400">async</span> <span className="text-neutral-200">(</span><span className="text-purple-400">supplierId</span><span className="text-neutral-200">) =></span> <span className="text-neutral-200">{'{'}</span>
+                <span className="text-blue-400">const</span> <span className="text-green-400">verifySupplier</span> <span className="text-neutral-200">=</span> <span className="text-orange-400">async</span> <span className="text-neutral-200">(</span><span className="text-purple-400">supplierId</span><span className="text-neutral-200">) =&gt;</span> <span className="text-neutral-200">&#123;</span>
                 <br />
-                {'  '}<span className="text-blue-400">try</span> <span className="text-neutral-200">{'{'}</span>
+                {'  '}<span className="text-blue-400">try</span> <span className="text-neutral-200">&#123;</span>
                 <br />
                 {'    '}<span className="text-blue-400">const</span> <span className="text-green-400">contract</span> <span className="text-neutral-200">=</span> <span className="text-blue-400">await</span> <span className="text-green-400">ethers</span><span className="text-neutral-200">.</span><span className="text-green-400">getContractAt</span><span className="text-neutral-200">(</span><span className="text-orange-400">"SupplierRegistry"</span><span className="text-neutral-200">, </span><span className="text-orange-400">REGISTRY_ADDRESS</span><span className="text-neutral-200">);</span>
                 <br />
@@ -129,7 +129,7 @@ const Technology = () => {
                 <br />
                 {'    '}<span className="text-green-400">console</span><span className="text-neutral-200">.</span><span className="text-green-400">log</span><span className="text-neutral-200">(</span><span className="text-orange-400">"Supplier verified:"</span><span className="text-neutral-200">, </span><span className="text-green-400">supplier</span><span className="text-neutral-200">);</span>
                 <br />
-                {'    '}<span className="text-blue-400">return</span> <span className="text-neutral-200">{'{'}</span>
+                {'    '}<span className="text-blue-400">return</span> <span className="text-neutral-200">&#123;</span>
                 <br />
                 {'      '}<span className="text-green-400">verified</span><span className="text-neutral-200">:</span> <span className="text-green-400">supplier</span><span className="text-neutral-200">.</span><span className="text-green-400">status</span> <span className="text-neutral-200">===</span> <span className="text-orange-400">"VERIFIED"</span><span className="text-neutral-200">,</span>
                 <br />
@@ -137,17 +137,17 @@ const Technology = () => {
                 <br />
                 {'      '}<span className="text-green-400">certifications</span><span className="text-neutral-200">:</span> <span className="text-green-400">supplier</span><span className="text-neutral-200">.</span><span className="text-green-400">certifications</span>
                 <br />
-                {'    '}<span className="text-neutral-200">};</span>
+                {'    '}<span className="text-neutral-200">&#125;;</span>
                 <br />
-                {'  '}<span className="text-neutral-200">} </span><span className="text-blue-400">catch</span><span className="text-neutral-200"> (</span><span className="text-green-400">error</span><span className="text-neutral-200">) {</span>
+                {'  '}<span className="text-neutral-200">&#125; </span><span className="text-blue-400">catch</span><span className="text-neutral-200"> (</span><span className="text-green-400">error</span><span className="text-neutral-200">) &#123;</span>
                 <br />
                 {'    '}<span className="text-green-400">console</span><span className="text-neutral-200">.</span><span className="text-green-400">error</span><span className="text-neutral-200">(</span><span className="text-orange-400">"Error verifying supplier:"</span><span className="text-neutral-200">, </span><span className="text-green-400">error</span><span className="text-neutral-200">);</span>
                 <br />
                 {'    '}<span className="text-blue-400">throw</span> <span className="text-blue-400">new</span> <span className="text-green-400">Error</span><span className="text-neutral-200">(</span><span className="text-orange-400">"Supplier verification failed"</span><span className="text-neutral-200">);</span>
                 <br />
-                {'  '}<span className="text-neutral-200">}</span>
+                {'  '}<span className="text-neutral-200">&#125;</span>
                 <br />
-                <span className="text-neutral-200">};</span>
+                <span className="text-neutral-200">&#125;;</span>
               </div>
             </div>
           </div>
