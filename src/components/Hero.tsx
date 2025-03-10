@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
@@ -58,7 +57,7 @@ const Hero = () => {
           <div className="flex items-center justify-center gap-8 flex-wrap">
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_logo.svg" alt="Microsoft" className="h-6 md:h-8 opacity-50 hover:opacity-75 transition" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" className="h-6 md:h-8 opacity-50 hover:opacity-75 transition" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="h-5 md:h-7 opacity-50 hover:opacity-75 transition" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Meta_Platforms_Inc._logo.svg" alt="Meta" className="h-6 md:h-8 opacity-50 hover:opacity-75 transition" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" className="h-5 md:h-7 opacity-50 hover:opacity-75 transition" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" className="h-6 md:h-8 opacity-50 hover:opacity-75 transition" />
           </div>
